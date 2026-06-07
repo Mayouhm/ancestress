@@ -4,9 +4,10 @@ import java.util.List;
 public class Node {
     int id;
     String name = "Fulan";
-    String gender;
+    // String gender;
     Node father = null;
     Node mother = null;
+    List<Node> children = new ArrayList<>();
 
     public Node(int pId, String pName) {
         id = pId;
@@ -38,12 +39,14 @@ public class Node {
     }
     public void setFather (Node father) {
         this.father = father;
+        this.father.addChild(this);
     }
     public Node getMother () {
         return this.mother;
     }
     public void setMother (Node mother) {
         this.mother = mother;
+        this.mother.addChild(this);
     }
     public void removeFather () {
         this.father = null;
@@ -51,6 +54,12 @@ public class Node {
     public void removeMother () {
         this.mother = null;
     }
+    public List<Node> getChildren () {
+        return this.children;
+    }
+    public void addChild (Node newChild) {
+        this.children.add(newChild);
+    } 
 
     // others
     public String nassab () {
@@ -71,6 +80,14 @@ public class Node {
             lineage.add(current);
         }
         return lineage;
+    }
+
+    public List<String> getChildrenStr() {
+        List<String> childrenNames = new ArrayList<>();
+        for (Node child : children) {
+            childrenNames.add(child.name);
+        }
+        return childrenNames;
     }
     
 
