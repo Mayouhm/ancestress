@@ -7,6 +7,7 @@ public class Node {
     // String gender;
     Node father = null;
     Node mother = null;
+    List<Node> parents = new ArrayList<>();
     List<Node> children = new ArrayList<>();
 
     public Node(int pId, String pName) {
@@ -37,21 +38,47 @@ public class Node {
     public Node getFather () {
         return this.father;
     }
-    public void setFather (Node father) {
-        this.father = father;
-        this.father.addChild(this);
-    }
+
     public Node getMother () {
         return this.mother;
     }
+
+    public void setFather (Node father) {
+        if (father.isDescendant(this)) {
+            throw new IllegalArgumentException("Would create a cycle: " + father.name + " is a descendant of " + this.name);
+        }
+
+        if (this.father != null) {
+            this.father.children.remove(this);
+        }
+
+        this.father = father;
+        this.father.addChild(this);
+    }
+    
     public void setMother (Node mother) {
+        if (mother.isDescendant(this)) {
+            throw new IllegalArgumentException("Would create a cycle: " + mother.name + " is a descendant of " + this.name);
+        }
+
+
+        if (this.mother != null) {
+            this.mother.children.remove(this);
+        }
+
         this.mother = mother;
         this.mother.addChild(this);
     }
     public void removeFather () {
+        if (this.father != null) {
+            this.father.children.remove(this);
+        } 
         this.father = null;
     }
     public void removeMother () {
+        if (this.mother != null) {
+            this.mother.children.remove(this);
+        } 
         this.mother = null;
     }
     public List<Node> getChildren () {
@@ -62,6 +89,25 @@ public class Node {
     } 
 
     // others
+    public Node furthestAncestor () {
+        Node current = this;
+        while (current.getFather() != null) {
+            current = current.getFather();
+        }
+        return current;
+    }
+
+    public boolean isDescendant (Node potentialDescendant) {
+        for (Node child : children) {
+            if (child == potentialDescendant || child.isDescendant(potentialDescendant)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    // Lineage lister
     public String nassab () {
         Node current = this;
         String nassab = current.getName();
