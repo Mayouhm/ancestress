@@ -1,8 +1,7 @@
 package com.hamzamayou;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 // import org.w3c.dom.Node;
@@ -30,7 +29,7 @@ public class FamilyTree {
         
     // }
 
-    // public Collection<Node> getAllNodes () {
-    //     return nodes.values();
-    // }
+    public Collection<Node> getAllNodes () {
+        return nodes.values();
+    }
 }

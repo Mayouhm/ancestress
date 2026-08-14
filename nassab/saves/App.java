@@ -41,17 +41,6 @@ public class App
                 "C:/Users/hamza/Documents/Side Work/nassab/nassab/saves/test1.json");
         } catch (IOException e) {
             System.err.println("Failed to save family tree: " + e.getMessage());
-        }
-
-        FamilyTree testLoadTree = new FamilyTree();
-        try {
-            testLoadTree = saveLoad.load(
-                "C:/Users/hamza/Documents/Side Work/nassab/nassab/saves/test2.json");
-        } catch (IOException e) {
-            System.err.println("Failed to save family tree: " + e.getMessage());
-        }
-
-        System.out.println(); System.out.println("========test loading========");
-        System.out.println(testLoadTree.getNode(2).getFather().getName());
-    }   
+}
+    }
 }
