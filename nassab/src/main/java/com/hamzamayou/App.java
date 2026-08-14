@@ -1,12 +1,22 @@
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+package com.hamzamayou;
 
-        Node ful1 = new Node(1, "fulan");
-        Node ful2 = new Node(2, "flan");
-        Node ful3 = new Node(3, "filan");
-        Node ful4 = new Node(4, "john");
-        Node ful5 = new Node(5, "jane");
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println("Hello world!");
+        FamilyTree tree = new FamilyTree();
+        // FamilyTreeSaveLoad saveLoad = new FamilyTreeSaveLoad();
+
+        Node ful1 = tree.createNode(1, "fulan");
+        Node ful2 = tree.createNode(2, "flan");
+        Node ful3 = tree.createNode(3, "filan");
+        Node ful4 = tree.createNode(4, "john");
+        Node ful5 = tree.createNode(5, "jane");
         
         ful2.setFather(ful1);  
         ful3.setFather(ful2);
@@ -24,5 +34,6 @@ public class Main {
         System.out.println(ful2.getChildren());
         System.out.println(ful2.getChildrenStr());
 
+        // saveLoad.save(tree, "saves/test1.json");
     }
 }
